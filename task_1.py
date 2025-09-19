@@ -14,4 +14,4 @@ try:
     target = int(input("Write your target number: "))
     print(get_index_of_sum(a, target))
 except Exception:
-    print("You wrote bullshit!")
+    print("Invalid input")
