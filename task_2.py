@@ -1,6 +1,7 @@
 import unittest
 
 
+# Реализация
 def bin_guess_number(target: int, lst: list) -> list:
     '''
     Ищет загаданное число target в списке lst и выводит загаданное число и количество угадываний,
@@ -45,6 +46,7 @@ def incr_guess_number(target: int, lst: list) -> list:
             return [lst[i], i + 1]
 
 
+# Тестирование решения
 class Test(unittest.TestCase):
     def test_bin_guess_number(self):
         answer = bin_guess_number(17, [1, 2, 5, 7, 8, 11, 16, 17, 20, 21, 57, 100, 101])
@@ -54,5 +56,3 @@ class Test(unittest.TestCase):
         answer = incr_guess_number(17, [1, 2, 5, 7, 8, 11, 16, 17, 20, 21, 57, 100, 101])
         self.assertEqual(answer, [17, 8])
 
-
-help(Test)
