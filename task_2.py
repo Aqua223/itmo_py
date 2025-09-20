@@ -31,4 +31,3 @@ class Test(unittest.TestCase):
 
 
 print(guess_number(17, [1, 2, 5, 7, 8, 11, 16, 17, 20, 21, 57, 100, 101]))
-help(guess_number(1, [1, 2]))
