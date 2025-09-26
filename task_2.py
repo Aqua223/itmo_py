@@ -18,7 +18,6 @@ def bin_guess_number(target: int, lst: list) -> list:
     cnt = 0
     # Стандартная реализация алгоритма бинарного поиска:
     while r - l > 1:
-        cnt += 1
         mid = (l + r) // 2
         if lst[mid] <= target:
             l = mid
@@ -26,6 +25,7 @@ def bin_guess_number(target: int, lst: list) -> list:
                 break
         else:
             r = mid
+        cnt += 1
 
     return [lst[l], cnt]
 
