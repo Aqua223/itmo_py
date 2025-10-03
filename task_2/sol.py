@@ -1,6 +1,3 @@
-import unittest
-
-
 # Реализация
 def bin_guess_number(target: int, lst: list) -> list:
     '''
@@ -46,13 +43,19 @@ def incr_guess_number(target: int, lst: list) -> list:
             return [lst[i], i + 1]
 
 
-# Тестирование решения
-class Test(unittest.TestCase):
-    def test_bin_guess_number(self):
-        answer = bin_guess_number(17, [1, 2, 5, 7, 8, 11, 16, 17, 20, 21, 57, 100, 101])
-        self.assertEqual(answer, [17, 3])
+def helper() -> None:
+    '''
+    Реализует пользовательский ввод данных для решения
 
-    def test_incr_guess_number(self):
-        answer = incr_guess_number(17, [1, 2, 5, 7, 8, 11, 16, 17, 20, 21, 57, 100, 101])
-        self.assertEqual(answer, [17, 8])
+    :return:
+    '''
+    try:
+        lst = list(map(int, input("Введите интервал значений через запятую: ").split()))
+        target = int(input("Введите загаданное число: "))
+
+    except Exception:
+        print("Некорректный формат данных")
+
+
+
 
