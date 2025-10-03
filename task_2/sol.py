@@ -14,21 +14,22 @@ def bin_guess_number(target: int, lst: list) -> list:
     # Инициализируем переменную подсчета количества угадываний:
     cnt = 0
     # Стандартная реализация алгоритма бинарного поиска:
-    while r - l > 1:
+    mid = None
+    while r - l > 0:
+        cnt += 1
         mid = (l + r) // 2
+        if lst[mid] == target or r - l == 1:
+            l = mid
+            break
         if lst[mid] <= target:
             l = mid
-            if lst[mid] == target:
-                cnt += 1
-                break
         else:
             r = mid
-        cnt += 1
 
-    if lst[mid] == target:
+    if len(lst) and lst[mid] == target:
         return [lst[l], cnt]
-    else:
-        return [-1, -1]
+
+    return [-1, -1]
 
 
 def incr_guess_number(target: int, lst: list) -> list:
