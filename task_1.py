@@ -15,3 +15,4 @@ try:
     print(get_index_of_sum(a, target))
 except Exception:
     print("Invalid input")
+
