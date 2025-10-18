@@ -7,8 +7,8 @@ from task_3 import sol as sol3
 # Since my iterative building tree algorithm (task_5/sol.py) converts the binary tree type from list to dict,
 # timeit module also takes into account the execution time of the function convert(). Due to this after the timing
 # iterative implementation works slower than recursive one. So I have pasted my code with iterative implementation
-# here with some refactoring, which includes removing of function convert() to not count extra time. That will provide
-# my code to execute correctly.
+# here with some refactoring, which includes removing of function convert() to not count extra time. That will
+# provide my code to execute correctly.
 
 
 def gen_bin_tree(root: int, height: int) -> list:
