@@ -28,7 +28,7 @@ def fact_iterative(n: int) -> int:
 
 
 def timing(n: int, option: int) -> float:
-    """ Evaluates an average execution time of the algorithms
+    """ Evaluates a minimum execution time of the algorithm
 
     With the module timeit computes the overall execution time for number (number = 1000) operations repeat (repeat = 5)
     times then returns the minimum of the execution times of the final list divided by operations number for iterative
