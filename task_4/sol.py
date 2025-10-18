@@ -34,9 +34,10 @@ def timing(n: int, option: int) -> float:
     times then returns the minimum of the execution times of the final list divided by operations number for iterative
     algorithm if the option parameter set to 0 and for recursive algorithm if set to 1
 
-    :param n:
-    :param option:
-    :return:
+    :param n: factorial parameter
+    :param option: variable that indicates which type of algorithm will be measured
+    :return: minimum execution time of the algorithm
+    :rtype: float
     """
     # Number of operations
     number = 1000
