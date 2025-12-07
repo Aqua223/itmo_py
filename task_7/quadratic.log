@@ -1,0 +1,12 @@
+INFO: Solving equation: 1x^2 + 2x + 1 = 0
+DEBUG: Discriminant: 0
+INFO: One real root
+INFO: Solving equation: 1x^2 + 2x + 2 = 0
+DEBUG: Discriminant: -4
+WARNING: Discriminant < 0: no real roots
+INFO: Solving equation: 0x^2 + 2x + 2 = 0
+INFO: Solving equation: fafdx^2 + 0x + 2 = 0
+INFO: Solving equation: fafdx^2 + 0x + 2 = 0
+ERROR: Parameter 'a' must be a number, got: fafd
+INFO: Solving equation: 0x^2 + 0x + 2 = 0
+CRITICAL: The equation doesn't make sense
