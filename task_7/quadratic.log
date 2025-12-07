@@ -10,3 +10,14 @@ INFO: Solving equation: fafdx^2 + 0x + 2 = 0
 ERROR: Parameter 'a' must be a number, got: fafd
 INFO: Solving equation: 0x^2 + 0x + 2 = 0
 CRITICAL: The equation doesn't make sense
+INFO: Solving equation: 0x^2 + 0x + 2 = 0
+CRITICAL: The equation doesn't make sense
+INFO: Solving equation: 1x^2 + 0x + 2 = 0
+DEBUG: Discriminant: -8
+WARNING: Discriminant < 0: no real roots
+INFO: Solving equation: 1x^2 + 0x + 2 = 0
+DEBUG: Discriminant: -8
+WARNING: Discriminant < 0: no real roots
+INFO: Solving equation: 1x^2 + 0x + 2 = 0
+DEBUG: Discriminant: -8
+WARNING: Discriminant < 0: no real roots

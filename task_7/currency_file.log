@@ -116,3 +116,16 @@ INFO: Execute: get_currencies args=(['USD', 'EUR', 'GBP'],), kwargs={'url': 'htt
 DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
 DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/11" 200 2310
 INFO: Success: get_currencies -> {'USD': 76.0937, 'EUR': 88.7028, 'GBP': 101.7601}
+INFO: Execute: get_currencies args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/11" 200 2310
+INFO: Success: get_currencies -> {'XYZ': 'Код валюты XYZ не найден'}
+INFO: Execute: get_currencies args=(['XYZ', 'USD'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/11" 200 2310
+INFO: Success: get_currencies -> {'XYZ': 'Код валюты XYZ не найден'}
+INFO: Execute: get_currencies args=(['XYZ', 'USD'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/11" 200 2310
+INFO: Success: get_currencies -> {'XYZ': 'Код валюты XYZ не найден', 'USD': 76.0937}
+

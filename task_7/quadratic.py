@@ -1,5 +1,8 @@
 import logging
 import math
+import sys
+from typing import Callable
+import functools
 
 logging.basicConfig(
     filename="quadratic.log",
@@ -8,6 +11,59 @@ logging.basicConfig(
 )
 
 
+def logger(func: Callable=None, *, handle=sys.stdout) -> Callable:
+    """ Параметризуемый декоратор, который ведёт логирование в зависимости от аргумента handle
+
+    :param func: декорируемая функция
+    :param handle: поток вывода (куда будет произведено логирование)
+    :return: возвращает задекорированную функцию
+    :rtype: Callable
+    """
+    if func is None:
+        return lambda func: logger(func, handle=handle)
+
+    def log_info(message: str):
+        """ Печатает сообщение message о выполнении кода с учётом потока handle (логирование)
+
+        :param message: сообщение, которое печатается
+        """
+        if isinstance(handle, logging.Logger):
+            handle.info(message)
+        else:
+            handle.write("INFO: " + message + "\n")
+
+    def log_error(message: str):
+        """ Печатает сообщение message об ошибке с учётом потока handle (логирование)
+
+        :param message: сообщение, которое печатается
+        """
+        if isinstance(handle, logging.Logger):
+            handle.error(message)
+        else:
+            handle.write("ERROR: " + message + "\n")
+
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs) -> Callable:
+        """ Функция обёртка
+
+        Логируется сообщение о выполнении кода, дальше в зависимости от результата выполнения
+        сообщается об успешном выполнении или выбрасывается исключение об ошибке
+        """
+        log_info(f"Execute: {func.__name__} args={args}, kwargs={kwargs}")
+
+        try:
+            result = func(*args, **kwargs)
+            log_info(f"Success: {func.__name__} -> {result}")
+            return result
+
+        except Exception as e:
+            log_error(f"Exception in {func.__name__}: {type(e).__name__}: {e}")
+            raise e
+
+    return wrapper
+
+
+@logger(handle=sys.stdout)
 def solve_quadratic(a, b, c):
     logging.info(f"Solving equation: {a}x^2 + {b}x + {c} = 0")
 
@@ -45,4 +101,4 @@ def solve_quadratic(a, b, c):
     return root1, root2
 
 
-print(solve_quadratic(0, 0, 2))
+# solve_quadratic(1, 0, 2)
