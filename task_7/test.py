@@ -2,6 +2,7 @@ import unittest
 import io
 import logging
 from unittest.mock import patch, MagicMock
+import requests
 
 from sol import get_currencies, logger
 
@@ -38,12 +39,12 @@ class TestGetCurrencies(unittest.TestCase):
         mock_get.return_value = mock_resp
 
         with self.assertRaises(KeyError):
-            get_currencies(["EUR"])
+            get_currencies(["RUB"])
 
     # Нет подключения
     @patch("sol.requests.get")
     def test_connection_error(self, mock_get):
-        mock_get.side_effect = Exception("Network down")
+        mock_get.side_effect = requests.exceptions.RequestException("Network down")
 
         with self.assertRaises(ConnectionError):
             get_currencies(["USD"])

@@ -71,7 +71,7 @@ file_logger = logging.getLogger("currency_file")
 
 
 @logger(handle=file_logger)
-def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/daily_json.js')->dict:
+def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/daily_json.js') -> dict:
     """
     Получает курсы валют с API Центробанка России.
 
@@ -84,6 +84,7 @@ def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/d
     """
     try:
         response = requests.get(url)
+        response.raise_for_status()
     except requests.exceptions.RequestException as e:
         raise ConnectionError(f"API is unavailable: {e}")
 
@@ -99,8 +100,7 @@ def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/d
 
     for code in currency_codes:
         if code not in data["Valute"]:
-            currencies[code] = f'Код валюты {code} не найден'
-            continue
+            raise KeyError(f'Code {code} is not found')
 
         value = data["Valute"][code]["Value"]
 
