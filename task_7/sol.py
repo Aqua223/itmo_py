@@ -18,7 +18,7 @@ def logger(func: Callable=None, *, handle=sys.stdout) -> Callable:
     if func is None:
         return lambda func: logger(func, handle=handle)
 
-    def log_info(message):
+    def log_info(message: str):
         """ Печатает сообщение message о выполнении кода с учётом потока handle (логирование)
 
         :param message: сообщение, которое печатается
@@ -28,7 +28,7 @@ def logger(func: Callable=None, *, handle=sys.stdout) -> Callable:
         else:
             handle.write("INFO: " + message + "\n")
 
-    def log_error(message):
+    def log_error(message: str):
         """ Печатает сообщение message об ошибке с учётом потока handle (логирование)
 
         :param message: сообщение, которое печатается
@@ -39,7 +39,7 @@ def logger(func: Callable=None, *, handle=sys.stdout) -> Callable:
             handle.write("ERROR: " + message + "\n")
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs) -> Callable:
         """ Функция обёртка
 
         Логируется сообщение о выполнении кода, дальше в зависимости от результата выполнения
