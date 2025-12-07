@@ -84,8 +84,8 @@ def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/d
     """
     try:
         response = requests.get(url)
-    except requests.RequestException as e:
-        raise ConnectionError(f"API unavailable: {e}")
+    except requests.exceptions.RequestException as e:
+        raise ConnectionError(f"API is unavailable: {e}")
 
     try:
         data = response.json()
@@ -95,11 +95,12 @@ def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/d
     currencies = {}
 
     if "Valute" not in data:
-        raise KeyError(f'Key "Value" not found')
+        raise KeyError(f'Key "Valute" not found')
 
     for code in currency_codes:
         if code not in data["Valute"]:
-            raise KeyError(f"Currency '{code}' not found")
+            currencies[code] = f'Код валюты {code} не найден'
+            continue
 
         value = data["Valute"][code]["Value"]
 
@@ -109,3 +110,6 @@ def get_currencies(currency_codes: list, url:str='https://www.cbr-xml-daily.ru/d
         currencies[code] = value
 
     return currencies
+
+
+# print(get_currencies(['XYZ', 'USD']))
