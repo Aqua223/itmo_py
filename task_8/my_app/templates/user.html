@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.name }}</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<a href="/users">← Назад</a>
+
+<h1>{{ user.name }}</h1>
+<h2>ID: {{ user.id }}</h2>
+
+<h3>Подписки:</h3>
+<ul>
+    {% for uc in user_currencies %}
+        <li>{{ map[uc.currency_id] }}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h2>Динамика валют</h2>
+
+{% for code, hist in graphs.items() %}
+    <h3>{{ code }}</h3>
+
+    <canvas id="chart_{{ code }}" width="400" height="200"></canvas>
+
+    <script>
+        const ctx_{{ code }} = document.getElementById("chart_{{ code }}");
+
+        new Chart(ctx_{{ code }}, {
+            type: "line",
+            data: {
+                labels: [{% for point in hist %}"{{ point.date }}",{% endfor %}],
+                datasets: [{
+                    label: "{{ code }}",
+                    data: [{% for point in hist %}{{ point.value }},{% endfor %}],
+                    borderWidth: 2,
+                    fill: false
+                }]
+            }
+        });
+    </script>
+
+{% endfor %}
+
+</body>
+</html>
